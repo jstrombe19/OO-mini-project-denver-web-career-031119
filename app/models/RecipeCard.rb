@@ -3,11 +3,11 @@ class RecipeCard
     attr_accessor :date, :rating, :user, :recipe
     @@all = []
 
-  def initialize(rating, user, recipe)
+  def initialize(rating, user, recipe, *ingredients)
     @date = Time.now.strftime("%m/%d/%Y")
     @rating = rating
     @user = user
-    @recipe = recipe
+    @recipe = Recipe.new(recipe, self, *ingredients)
     @@all << self
   end
 

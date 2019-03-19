@@ -11,8 +11,16 @@ class Ingredient
   end
 
   def self.most_common_allergen
-    most_allergic = Allergen.allergicUsers.values.max
-    allergen_key = Allergen.allergicUsers.key(most_allergic)
-    @@all.find {|ingredient| ingredient.name == allergen_key}
+    ingredients = Allergen.all.map { |allergen|
+      allergen.ingredient
+    }
+    ingredients.max_by { |i| ingredients.count(i) }
   end
+
+
+
+  #   most_allergic = Allergen.allergicUsers.values.max
+  #   allergen_key = Allergen.allergicUsers.key(most_allergic)
+  #   @@all.find {|ingredient| ingredient.name == allergen_key}
+  # end
 end
